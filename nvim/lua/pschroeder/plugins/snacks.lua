@@ -151,12 +151,4 @@ return {
             { "<leader>vh", function() require("snacks").picker.help() end, desc = "Help Pages" },
         },
     },
-    {
-        "folke/todo-comments.nvim",
-        event = { "BufReadPre", "BufNewFile" },
-        keys = {
-            { "<leader>pt", function() require("snacks").picker.todo_comments() end, desc = "Todo" },
-            { "<leader>pT", function() require("snacks").picker.todo_comments({ keywords = { "TODO", "FIX", "FIXME" } }) end, desc = "Todo/Fix/Fixme" },
-        },
-    }
 }
