@@ -55,7 +55,7 @@ config.default_prog = { "pwsh", "-NoLogo" }
 config.default_cwd = "E://Projects"  -- TODO: make OS detectable
 
 -- Appereance
-config.color_scheme = "Tokyo Night"
+config.color_scheme = "rose-pine"
 config.font = wezterm.font_with_fallback({
     "JetBrainsMono Nerd Font",
     "MesloLGL Nerd Font",
@@ -93,12 +93,12 @@ config.keys = {
     },
     {
         mods = "LEADER",
-        key = "|",
+        key = "s",
         action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" }
     },
     {
         mods = "LEADER",
-        key = "-",
+        key = "v",
         action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" }
     },
     {
@@ -159,22 +159,25 @@ config.use_fancy_tab_bar = false
 config.tab_and_split_indices_are_zero_based = true
 
 config.colors = {
-    tab_bar = {
-        background = "#1A1B26",
-        active_tab = {
-            bg_color = "#7aa2f7",
-            fg_color = "#1A1B26",
-            intensity = "Bold",
-        },
-        inactive_tab = {
-            bg_color = "#2A2F3A",
-            fg_color = "#6272a4",
-        },
-        inactive_tab_hover = {
-            bg_color = "#444B62",
-            fg_color = "#ffffff",
-        },
+  tab_bar = {
+    background = "#191724", 
+
+    active_tab = {
+      bg_color = "#403d52", 
+      fg_color = "#e0def4", 
+      intensity = "Bold",
     },
+
+    inactive_tab = {
+      bg_color = "#1f1d2e", 
+      fg_color = "#6e6a86", 
+    },
+
+    inactive_tab_hover = {
+      bg_color = "#26233a", 
+      fg_color = "#e0def4", 
+    },
+  },
 }
 
 config.tab_bar_style = {

@@ -38,7 +38,7 @@ return {
 				graphql = { "prettier" },
 				liquid = { "prettier" },
 				lua = { "stylua" },
-				python = { "black" },
+				python = { "ruff_format" },
 				markdown = { "prettier" },
 				["markdown.mdx"] = { "prettier", "markdownlint-cli2", "markdown-toc" },
 			},

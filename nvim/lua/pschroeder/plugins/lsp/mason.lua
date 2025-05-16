@@ -39,27 +39,19 @@ return {
                 "jsonls",
                 "yamlls",
                 "lua_ls",
-                -- "ts_ls", currently using a ts plugin
                 "html",
                 "cssls",
                 "tailwindcss",
-                -- "gopls",
-                "emmet_ls",
-                "emmet_language_server",
-                -- "eslint",
                 "marksman",
             },
-
         })
 
         mason_tool_installer.setup({
             ensure_installed = {
                 "prettier", -- prettier formatter
-                "stylua",   -- lua formatter
-                "isort",    -- python formatter
-                "pylint",
-                "clangd",
-                "denols",
+                "stylua", -- lua formatter
+                "isort", -- python formatter
+                "ruff"
                 -- { 'eslint_d', version = '13.1.2' },
             },
 
