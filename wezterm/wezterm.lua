@@ -29,41 +29,41 @@
 -- 5. Status Line:
 --    - The status line indicates when the leader key is active, displaying an ocean wave emoji (🌊).
 
-local wezterm = require 'wezterm'
+local wezterm = require("wezterm")
 
 local mux = wezterm.mux
 
 local config = {}
 if wezterm.config_builder then
-    config = wezterm.config_builder()
+	config = wezterm.config_builder()
 end
 config.check_for_updates = true
 
 -- Globals
-local window_min = ' 󰖰 '
-local window_max = ' 󰖯 '
-local window_close = ' 󰅖 '
+local window_min = " 󰖰 "
+local window_max = " 󰖯 "
+local window_close = " 󰅖 "
 
 -- Maximize on startup
 wezterm.on("gui-startup", function()
-  local tab, pane, window = mux.spawn_window{}
-  window:gui_window():maximize()
+	local tab, pane, window = mux.spawn_window({})
+	window:gui_window():maximize()
 end)
 
 -- Defaults
 config.default_prog = { "pwsh", "-NoLogo" }
-config.default_cwd = "E://Projects"  -- TODO: make OS detectable
+config.default_cwd = "E://Projects" -- TODO: make OS detectable
 
 -- Appereance
 config.color_scheme = "rose-pine"
 config.font = wezterm.font_with_fallback({
-    "JetBrainsMono Nerd Font",
-    "MesloLGL Nerd Font",
-    "Fira Code"
+	"JetBrainsMono Nerd Font",
+	"MesloLGL Nerd Font",
+	"Fira Code",
 })
 config.font_size = 12
 
--- Window 
+-- Window
 config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
 config.initial_rows = 40
 config.initial_cols = 120
@@ -71,85 +71,85 @@ config.initial_cols = 120
 -- tmux
 config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
 config.keys = {
-    {
-        mods = "LEADER",
-        key = "c",
-        action = wezterm.action.SpawnTab "CurrentPaneDomain",
-    },
-    {
-        mods = "LEADER",
-        key = "x",
-        action = wezterm.action.CloseCurrentPane { confirm = true }
-    },
-    {
-        mods = "LEADER",
-        key = "b",
-        action = wezterm.action.ActivateTabRelative(-1)
-    },
-    {
-        mods = "LEADER",
-        key = "n",
-        action = wezterm.action.ActivateTabRelative(1)
-    },
-    {
-        mods = "LEADER",
-        key = "s",
-        action = wezterm.action.SplitHorizontal { domain = "CurrentPaneDomain" }
-    },
-    {
-        mods = "LEADER",
-        key = "v",
-        action = wezterm.action.SplitVertical { domain = "CurrentPaneDomain" }
-    },
-    {
-        mods = "LEADER",
-        key = "h",
-        action = wezterm.action.ActivatePaneDirection "Left"
-    },
-    {
-        mods = "LEADER",
-        key = "j",
-        action = wezterm.action.ActivatePaneDirection "Down"
-    },
-    {
-        mods = "LEADER",
-        key = "k",
-        action = wezterm.action.ActivatePaneDirection "Up"
-    },
-    {
-        mods = "LEADER",
-        key = "l",
-        action = wezterm.action.ActivatePaneDirection "Right"
-    },
-    {
-        mods = "LEADER",
-        key = "LeftArrow",
-        action = wezterm.action.AdjustPaneSize { "Left", 5 }
-    },
-    {
-        mods = "LEADER",
-        key = "RightArrow",
-        action = wezterm.action.AdjustPaneSize { "Right", 5 }
-    },
-    {
-        mods = "LEADER",
-        key = "DownArrow",
-        action = wezterm.action.AdjustPaneSize { "Down", 5 }
-    },
-    {
-        mods = "LEADER",
-        key = "UpArrow",
-        action = wezterm.action.AdjustPaneSize { "Up", 5 }
-    },
+	{
+		mods = "LEADER",
+		key = "c",
+		action = wezterm.action.SpawnTab("CurrentPaneDomain"),
+	},
+	{
+		mods = "LEADER",
+		key = "x",
+		action = wezterm.action.CloseCurrentPane({ confirm = true }),
+	},
+	{
+		mods = "LEADER",
+		key = "b",
+		action = wezterm.action.ActivateTabRelative(-1),
+	},
+	{
+		mods = "LEADER",
+		key = "n",
+		action = wezterm.action.ActivateTabRelative(1),
+	},
+	{
+		mods = "LEADER",
+		key = "s",
+		action = wezterm.action.SplitHorizontal({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		mods = "LEADER",
+		key = "v",
+		action = wezterm.action.SplitVertical({ domain = "CurrentPaneDomain" }),
+	},
+	{
+		mods = "LEADER",
+		key = "h",
+		action = wezterm.action.ActivatePaneDirection("Left"),
+	},
+	{
+		mods = "LEADER",
+		key = "j",
+		action = wezterm.action.ActivatePaneDirection("Down"),
+	},
+	{
+		mods = "LEADER",
+		key = "k",
+		action = wezterm.action.ActivatePaneDirection("Up"),
+	},
+	{
+		mods = "LEADER",
+		key = "l",
+		action = wezterm.action.ActivatePaneDirection("Right"),
+	},
+	{
+		mods = "LEADER",
+		key = "LeftArrow",
+		action = wezterm.action.AdjustPaneSize({ "Left", 5 }),
+	},
+	{
+		mods = "LEADER",
+		key = "RightArrow",
+		action = wezterm.action.AdjustPaneSize({ "Right", 5 }),
+	},
+	{
+		mods = "LEADER",
+		key = "DownArrow",
+		action = wezterm.action.AdjustPaneSize({ "Down", 5 }),
+	},
+	{
+		mods = "LEADER",
+		key = "UpArrow",
+		action = wezterm.action.AdjustPaneSize({ "Up", 5 }),
+	},
 }
 
 for i = 0, 9 do
-    -- leader + number to activate that tab
-    table.insert(config.keys, {
-        key = tostring(i),
-        mods = "LEADER",
-        action = wezterm.action.ActivateTab(i),
-    })
+	-- leader + number to activate that tab
+	table.insert(config.keys, {
+		key = tostring(i),
+		mods = "LEADER",
+		action = wezterm.action.ActivateTab(i),
+	})
 end
 
 -- Tab bar
@@ -159,57 +159,73 @@ config.use_fancy_tab_bar = false
 config.tab_and_split_indices_are_zero_based = true
 
 config.colors = {
-  tab_bar = {
-    background = "#191724", 
+	tab_bar = {
+		background = "#191724",
 
-    active_tab = {
-      bg_color = "#403d52", 
-      fg_color = "#e0def4", 
-      intensity = "Bold",
-    },
+		active_tab = {
+			bg_color = "#403d52",
+			fg_color = "#e0def4",
+			intensity = "Bold",
+		},
 
-    inactive_tab = {
-      bg_color = "#1f1d2e", 
-      fg_color = "#6e6a86", 
-    },
+		inactive_tab = {
+			bg_color = "#1f1d2e",
+			fg_color = "#6e6a86",
+		},
 
-    inactive_tab_hover = {
-      bg_color = "#26233a", 
-      fg_color = "#e0def4", 
-    },
-  },
+		inactive_tab_hover = {
+			bg_color = "#26233a",
+			fg_color = "#e0def4",
+		},
+		new_tab = {
+			bg_color = "#1f1d2e",
+			fg_color = "#6e6a86",
+		},
+
+		new_tab_hover = {
+			bg_color = "#26233a",
+			fg_color = "#e0def4",
+		},
+	},
 }
 
 config.tab_bar_style = {
-    window_hide = window_min,
-    window_hide_hover = windows_min,
-    window_maximize = window_max,
-    window_maximize_hover = window_max,
-    window_close = window_close,
-    window_close_hover = window_close,
+	window_hide = window_min,
+	window_hide_hover = window_min,
+	window_maximize = window_max,
+	window_maximize_hover = window_max,
+	window_close = window_close,
+	window_close_hover = window_close,
 }
 
 -- tmux status
 wezterm.on("update-right-status", function(window, _)
-    local SOLID_LEFT_ARROW = ""
-    local ARROW_FOREGROUND = { Foreground = { Color = "7aa2f7" } }
-    local prefix = ""
+	local SOLID_LEFT_ARROW = ""
+	local ARROW_FOREGROUND = { Foreground = { Color = "#403d52" } }
+	local prefix = ""
 
-    if window:leader_is_active() then
-        prefix = " " .. utf8.char(0x1f30a) -- ocean wave
-        SOLID_LEFT_ARROW = utf8.char(0xe0b2)
-    end
+	if window:leader_is_active() then
+		prefix = " " .. utf8.char(0x1f33f) -- ocean wave
+		SOLID_LEFT_ARROW = utf8.char(0xe0b2)
+	end
 
-    if window:active_tab():tab_id() ~= 0 then
-        ARROW_FOREGROUND = { Foreground = { Color = "#2A2F3A" } }
-    end -- arrow color based on if tab is first pane
+	if window:active_tab():tab_id() ~= 0 then
+		ARROW_FOREGROUND = { Foreground = { Color = "#1f1d2e" } }
+	end -- arrow color based on if tab is first pane
 
-    window:set_left_status(wezterm.format {
-        { Background = { Color = "#b7bdf8" } },
-        { Text = prefix },
-        ARROW_FOREGROUND,
-        { Text = SOLID_LEFT_ARROW }
-    })
+	window:set_left_status(wezterm.format({
+		{ Background = { Color = "#ebbcba" } },
+		{ Text = prefix },
+		ARROW_FOREGROUND,
+		{ Text = SOLID_LEFT_ARROW },
+	}))
+end)
+
+-- Format Tab Title
+wezterm.on("format-tab-title", function(tab)
+	local index = tab.tab_index
+
+	return string.format(" [%d] ", index)
 end)
 
 return config
