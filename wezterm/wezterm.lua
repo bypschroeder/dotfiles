@@ -86,7 +86,13 @@ config.initial_rows = 40
 config.initial_cols = 120
 
 -- tmux
-config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 2000 }
+if is_windows then
+  config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 2000 }
+elseif is_macos then
+  config.leader = { key = "a", mods = "CMD", timeout_milliseconds = 2000 }
+else
+  config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 2000 } 
+end
 config.keys = {
 	{
 		mods = "LEADER",
