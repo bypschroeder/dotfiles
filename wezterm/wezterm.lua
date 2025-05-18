@@ -27,7 +27,7 @@
 --    - LEADER + UpArrow: Increase the pane size upward by 5 units.
 
 -- 5. Status Line:
---    - The status line indicates when the leader key is active, displaying an ocean wave emoji (🌊).
+--    - The status line indicates when the leader key is active
 
 local wezterm = require("wezterm")
 
@@ -40,6 +40,10 @@ end
 config.check_for_updates = true
 
 -- Globals
+local target = wezterm.target_triple
+local is_windows = target:find("windows") ~= nil
+local is_macos = target:find("apple") ~= nil
+
 local window_min = " 󰖰 "
 local window_max = " 󰖯 "
 local window_close = " 󰅖 "
@@ -51,8 +55,13 @@ wezterm.on("gui-startup", function()
 end)
 
 -- Defaults
-config.default_prog = { "pwsh", "-NoLogo" }
-config.default_cwd = "E://Projects" -- TODO: make OS detectable
+if is_windows then
+	config.default_prog = { "pwsh", "-NoLogo" }
+	config.default_cwd = "E://Projects"
+elseif is_macos then 
+	config.default_prog = { "/bin/zsh", "-l" }
+	config.default_cwd = "/Users/patrickschroder/Documents/PROJECTS"
+end
 
 -- Appereance
 config.color_scheme = "rose-pine"
