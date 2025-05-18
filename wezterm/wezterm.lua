@@ -58,7 +58,7 @@ end)
 if is_windows then
 	config.default_prog = { "pwsh", "-NoLogo" }
 	config.default_cwd = "E://Projects"
-elseif is_macos then 
+elseif is_macos then
 	config.default_prog = { "/bin/zsh", "-l" }
 	config.default_cwd = "/Users/patrickschroder/Documents/PROJECTS"
 end
@@ -70,10 +70,18 @@ config.font = wezterm.font_with_fallback({
 	"MesloLGL Nerd Font",
 	"Fira Code",
 })
-config.font_size = 12
+if is_windows then
+	config.font_size = 12
+elseif is_macos then
+	config.font_size = 14
+end
 
 -- Window
-config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
+if is_windows then
+	config.window_decorations = "INTEGRATED_BUTTONS | RESIZE"
+elseif is_macos then
+	config.window_decorations = "RESIZE"
+end
 config.initial_rows = 40
 config.initial_cols = 120
 
@@ -198,14 +206,16 @@ config.colors = {
 	},
 }
 
-config.tab_bar_style = {
-	window_hide = window_min,
-	window_hide_hover = window_min,
-	window_maximize = window_max,
-	window_maximize_hover = window_max,
-	window_close = window_close,
-	window_close_hover = window_close,
-}
+if is_windows then
+	config.tab_bar_style = {
+		window_hide = window_min,
+		window_hide_hover = window_min,
+		window_maximize = window_max,
+		window_maximize_hover = window_max,
+		window_close = window_close,
+		window_close_hover = window_close,
+	}
+end
 
 -- tmux status
 wezterm.on("update-right-status", function(window, _)
