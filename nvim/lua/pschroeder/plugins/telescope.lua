@@ -1,13 +1,19 @@
+local uname = vim.loop.os_uname().sysname
+local is_macos = uname == "Darwin"
+local is_windows = uname == "Windoews_NT"
+
 return {
 	"nvim-telescope/telescope.nvim",
-	branch = "master", -- using master to fix issues with deprecated to definition warnings 
-    -- '0.1.x' for stable ver.
+	branch = "master", -- using master to fix issues with deprecated to definition warnings
+	-- '0.1.x' for stable ver.
 	dependencies = {
 		"nvim-lua/plenary.nvim",
 		{
-            "nvim-telescope/telescope-fzf-native.nvim",
-            build = "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release",
-        },
+			"nvim-telescope/telescope-fzf-native.nvim",
+			build = is_windows
+					and "cmake -S. -Bbuild -DCMAKE_BUILD_TYPE=Release && cmake --build build --config Release"
+				or "make",
+		},
 		"nvim-tree/nvim-web-devicons",
 		"andrew-george/telescope-themes",
 	},
@@ -48,6 +54,11 @@ return {
 			builtin.grep_string({ search = word })
 		end, { desc = "Find Connected Words under cursor" })
 
-		vim.keymap.set("n", "<leader>ths", "<cmd>Telescope themes<CR>", { noremap = true, silent = true, desc = "Theme Switcher" })
-    end,
+		vim.keymap.set(
+			"n",
+			"<leader>ths",
+			"<cmd>Telescope themes<CR>",
+			{ noremap = true, silent = true, desc = "Theme Switcher" }
+		)
+	end,
 }

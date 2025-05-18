@@ -52,3 +52,4 @@ vim.keymap.set("n", "<leader>lx", function()
 		underline = isLspDiagnosticsVisible,
 	})
 end, { desc = "Toggle LSP diagnostics" })
+
