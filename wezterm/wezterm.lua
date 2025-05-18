@@ -86,7 +86,7 @@ config.initial_rows = 40
 config.initial_cols = 120
 
 -- tmux
-config.leader = { key = "a", mods = "CTRL", timeout_milliseconds = 2000 }
+config.leader = { key = "a", mods = "ALT", timeout_milliseconds = 2000 }
 config.keys = {
 	{
 		mods = "LEADER",
